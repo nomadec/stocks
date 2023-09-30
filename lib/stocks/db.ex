@@ -3,6 +3,7 @@ defmodule Stocks.DB do
 
   alias Stocks.Models.Binance
 
+  @home_dir Application.compile_env(:stocks, :home_dir)
   @db_dir "stock_db"
 
   def drop(model) when is_struct(model) do
@@ -42,7 +43,7 @@ defmodule Stocks.DB do
   def path_to_db(model) when is_struct(model) do
     Enum.join(
       [
-        System.user_home!(),
+        @home_dir || System.user_home!(),
         @db_dir,
         Enum.join([model.exchange, model.market, model.type], "/")
       ],
