@@ -30,12 +30,11 @@ defmodule Stocks.Models.Binance.Futures.Trade do
     |> case do
       {:ok, %__MODULE__{} = trade} ->
         data =
-          "#{trade.timestamp_ms}, #{trade.price}, #{trade.qty}, #{if(trade.is_buyer_maker, do: 1, else: 0)}"
+          "#{trade.timestamp_ms},#{trade.price},#{trade.qty},#{if(trade.is_buyer_maker, do: 1, else: 0)}\n"
 
         {:ok, data}
 
       {:error, changeset} ->
-        IO.inspect(changeset)
         {:error, changeset}
     end
   end
