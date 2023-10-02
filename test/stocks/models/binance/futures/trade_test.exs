@@ -29,6 +29,6 @@ defmodule Stocks.Models.Binance.Futures.TradeTest do
     }
 
     assert {:ok, changeset} = Trade.changeset(trade)
-    assert changeset == "1695970502000, 27030.4, 0.25, 1"
+    assert changeset == "1695970502000,27030.4,0.25,1\n"
   end
 end

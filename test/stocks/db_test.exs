@@ -42,15 +42,15 @@ defmodule Stocks.DBTest do
     }
 
     assert {:ok, data} = DB.append(trade)
-    assert data == "1695970502000, 27030.4, 0.25, 1"
+    assert data == "1695970502000,27030.4,0.25,1\n"
 
-    assert {:ok, "1695970502000, 27030.4, 0.25, 1"} =
+    assert {:ok, "1695970502000,27030.4,0.25,1\n"} =
              DB.read(trade, ~D[2023-09-29], ~D[2023-09-29])
 
     assert {:ok, data} = DB.append(trade)
-    assert data == "1695970502000, 27030.4, 0.25, 1"
+    assert data == "1695970502000,27030.4,0.25,1\n"
 
-    assert {:ok, "1695970502000, 27030.4, 0.25, 11695970502000, 27030.4, 0.25, 1"} =
+    assert {:ok, "1695970502000,27030.4,0.25,1\n1695970502000,27030.4,0.25,1\n"} =
              DB.read(trade, ~D[2023-09-29], ~D[2023-09-29])
   end
 
@@ -65,9 +65,9 @@ defmodule Stocks.DBTest do
       is_buyer_maker: true
     }
 
-    assert {:ok, "1695970502000, 27030.4, 0.25, 1"} = DB.append(trade)
+    assert {:ok, "1695970502000,27030.4,0.25,1\n"} = DB.append(trade)
 
-    assert {:ok, "1695970502000, 27030.4, 0.25, 1"} =
+    assert {:ok, "1695970502000,27030.4,0.25,1\n"} =
              DB.read(trade, ~D[2023-09-29], ~D[2023-09-29])
   end
 
